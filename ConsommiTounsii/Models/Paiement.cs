@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ConsommiTounsii.Models
+namespace MVCConsumeWebAPI.Models
 {
-    public class DeliveryMan
+    public enum Paiement
     {
-        
+        BYCARD, ATTHEDELIVERY
     }
 }
