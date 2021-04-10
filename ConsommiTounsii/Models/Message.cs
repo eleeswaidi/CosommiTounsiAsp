@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ConsumingWebAapiRESTinMVC.Models
+namespace ConsommiTounsii.Models
 {
     public class Message
     {
@@ -11,7 +11,7 @@ namespace ConsumingWebAapiRESTinMVC.Models
 
         public String desc_message { get; set; }
 
-        public Date date_message { get; set; }
+        public DateTime date_message { get; set; }
 
     }
 }
