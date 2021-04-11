@@ -12,5 +12,8 @@ namespace ConsommiTounsii.Models
         public DateTime StartTime { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime EndTime { get; set; }
+
+        public List<Delivery> deliveries { get; set; }
+        public List<Premium> premiums { get; set; }
     }
 }

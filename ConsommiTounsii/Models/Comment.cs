@@ -12,6 +12,11 @@ namespace ConsommiTounsii.Models
         public String desc_comment { get; set; }
 
         public int rating_comment { get; set; }
+        public Subject subject { get; set; }
+
+        
+
+       
 
 
     }

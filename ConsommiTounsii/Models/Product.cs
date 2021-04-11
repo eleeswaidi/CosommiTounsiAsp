@@ -22,5 +22,12 @@ namespace ConsommiTounsii.Models
         public String weight_prod { get; set; }
 
         public int minvalue_stock { get; set; }
+        
+        public List<Claim> claims { get; set; }
+        public Line line { get; set; }
+        public Category category { get; set; }
+        public List<Publicity> publicities  { get; set; }
+        public List<orders> orders { get; set; }
+
     }
 }

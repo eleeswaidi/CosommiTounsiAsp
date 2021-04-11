@@ -12,5 +12,9 @@ namespace ConsommiTounsii.Models
         public String desc_subject { get; set; }
 
         public int rating_subject { get; set; }
+        public List<Comment> comments { get; set; } 
+        public Product product { get; set; }
+        
+        public Client client { get; set; }
     }
 }

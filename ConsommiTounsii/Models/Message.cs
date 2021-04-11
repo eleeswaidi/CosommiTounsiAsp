@@ -12,6 +12,7 @@ namespace ConsommiTounsii.Models
         public String desc_message { get; set; }
 
         public DateTime date_message { get; set; }
+        public Client client { get; set; }
 
     }
 }

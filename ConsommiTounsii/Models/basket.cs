@@ -10,6 +10,9 @@ namespace ConsommiTounsii.Models
         public int id_basket { get; set; }
         public DateTime date_basket { get; set; }
         public float total { get; set; }
-        public string type_paiement { get; set; }
+        public Paiement type { get; set; }
+        public Client client { get; set; }
+        public List<orders> orders { get; set; }
+
     }
 }

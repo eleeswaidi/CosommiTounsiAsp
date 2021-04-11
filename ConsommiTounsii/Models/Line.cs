@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsommiTounsii.Models
 {
-    class Line
+   public  class Line
     {
 
         public int LineId { get; set; }
@@ -15,6 +15,9 @@ namespace ConsommiTounsii.Models
         public int nbr_place_line { get; set; }
 
         public typeE typee {get;set;}
+
+        public  LineManager lineManager { get; set; }
+        public List<Product> products { get; set; }
 
 public Line(int lineId, string name_line, int nbr_place_line, typeE type)
         {
@@ -51,6 +54,6 @@ public Line(int lineId, string name_line, int nbr_place_line, typeE type)
 
     public enum typeE
     {
-        a,b
+        Refrigerator_Line, Normal_Line
     }
 }

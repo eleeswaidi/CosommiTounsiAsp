@@ -12,5 +12,9 @@ namespace ConsommiTounsii.Models
         public DateTime date{get;set;}
         public String status{get;set;}
         public float fees{get;set;}
+
+        public DeliveryMan deliveryman {get; set;}
+        public orders orders { get; set; }
+
     }
 }

@@ -11,5 +11,6 @@ namespace ConsommiTounsii.Models
 
         public String name_pub { get; set; }
 
+        public Product product { get; set; }
     }
 }

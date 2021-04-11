@@ -11,5 +11,6 @@ namespace ConsommiTounsii.Models
         public float premium{get;set;}
         public String month{get;set;}
         public int year{get;set;}
+        public DeliveryMan deliveryMan { get; set; }
     }
 }

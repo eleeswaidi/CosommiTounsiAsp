@@ -12,5 +12,9 @@ namespace ConsommiTounsii.Models
         public DateTime date_order { get; set; }
         public float fees_order { get; set; }
         public int quantity { get; set; }
+        public basket basket { get; set; }
+        public Delivery delivery { get; set; }
+
+        public Product product { get; set; }
     }
 }

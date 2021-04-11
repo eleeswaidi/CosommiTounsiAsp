@@ -12,5 +12,6 @@ namespace ConsommiTounsii.Models
         public String name_cat { get; set; }
 
         public String desc_cat { get; set; }
+        public List<Product> products { get; set; }
     }
 }
