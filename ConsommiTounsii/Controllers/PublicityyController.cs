@@ -1,0 +1,146 @@
+﻿using ConsommiTounsii.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Web;
+using System.Web.Mvc;
+
+namespace ConsommiTounsii.Controllers
+{
+    public class PublicityyController : Controller
+    {
+        // GET: Publicity
+        public ActionResult Index()
+        {
+            IEnumerable<Publicity> pubs = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-all-publicity");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Publicity>>();
+                    readJob.Wait();
+                    pubs = readJob.Result;
+                }
+                else
+                {
+                    pubs = Enumerable.Empty<Publicity>();
+                    ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
+                }
+            }
+            return View(pubs);
+        }
+
+        public ActionResult Details(int id)
+        {
+            Publicity pubs = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-publicity/" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Publicity>();
+                    readTask.Wait();
+
+                    pubs = readTask.Result;
+                }
+            }
+            return View(pubs);
+        }
+
+        // Post : Publicity
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Publicity pub)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/add-publicity");
+                var postJob = client.PostAsJsonAsync<Publicity>("add-publicity", pub);
+                postJob.Wait();
+
+                var postResult = postJob.Result;
+                if (postResult.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
+                return View(pub);
+            }
+
+        }
+
+        //Delete a publicity
+        public ActionResult Delete(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var deleteTask = client.DeleteAsync("remove-publicity/" + id.ToString());
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
+            }
+        }
+
+        //create an action for getting data by id  for edit form
+        public ActionResult Edit(int id)
+        {
+            Publicity pub = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-publicity/" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Publicity>();
+                    readTask.Wait();
+
+                    pub = readTask.Result;
+                }
+            }
+            return View(pub);
+        }
+
+        //craete post  method to update the data
+        [HttpPost]
+        public ActionResult Edit(Publicity pub)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/modify-publicity");
+                var putTask = client.PutAsJsonAsync<Publicity>("modify-publicity", pub);
+                putTask.Wait();
+
+                var ressult = putTask.Result;
+                if (ressult.IsSuccessStatusCode)
+
+                    return RedirectToAction("Index");
+                return View(pub);
+
+            }
+        }
+    }
+}
