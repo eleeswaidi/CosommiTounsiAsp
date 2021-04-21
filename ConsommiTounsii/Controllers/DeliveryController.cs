@@ -47,7 +47,7 @@ namespace ConsommiTounsii.Controllers
             try
             {
                 HttpResponseMessage response = Client.GetAsync("api/employes").Result;
-                if (response)
+              //  if (response)
                     // TODO: Add insert logic here
 
                     return RedirectToAction("Index");
