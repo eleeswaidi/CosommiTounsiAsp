@@ -11,6 +11,8 @@ namespace ConsommiTounsii.Models
         public int status_client { get; set; }
         public List<Subject> subjects { get; set; }
         public List<Message> messages { get; set; }
-        public basket basket { get; set; }
+        public Basket basket { get; set; }
+
+
     }
 }

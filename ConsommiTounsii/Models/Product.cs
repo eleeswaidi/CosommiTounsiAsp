@@ -27,7 +27,7 @@ namespace ConsommiTounsii.Models
         public Line line { get; set; }
         public Category category { get; set; }
         public List<Publicity> publicities  { get; set; }
-        public List<orders> orders { get; set; }
+        public List<Orders> orders { get; set; }
 
     }
 }

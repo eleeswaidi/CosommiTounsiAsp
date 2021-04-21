@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ConsommiTounsii.Models.Orders>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fees_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.basket)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status_order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fees_order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product.name_prod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.basket.id_basket)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_order }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_order })|
+                @Html.ActionLink("Affect to basket", "Affect", new { id = item.id_order })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Validate", "Validatebasket")
+</div>
