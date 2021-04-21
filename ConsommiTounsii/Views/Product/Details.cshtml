@@ -1,0 +1,88 @@
+﻿@model ConsommiTounsii.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product :  @Html.DisplayFor(model => model.name_prod) </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name_prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description_prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description_prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.barcode_prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.barcode_prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.weight_prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight_prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.minvalue_stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minvalue_stock)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.name_cat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
