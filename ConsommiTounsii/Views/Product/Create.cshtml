@@ -1,4 +1,4 @@
-﻿@model ConsommiTounsii.Models.Product
+﻿@model Consomitounsi.WebService.Models.Product
 
 
 @{
@@ -78,13 +78,14 @@
             @Html.LabelFor(model => model.category, htmlAttributes: new
             {
                 @class =
-            "control-label col-md-2"
+                "control-label col-md-2"
             })
             <div class="col-md-10">
-                @Html.DropDownList("id_cat", (SelectList)ViewData["cats"])
-                @Html.ValidationMessageFor(model => model.category_id_cat)
+                @Html.DropDownList("categoryList", (SelectList)ViewData["categoryList"])
+                @Html.ValidationMessageFor(model => model.category)
             </div>
         </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

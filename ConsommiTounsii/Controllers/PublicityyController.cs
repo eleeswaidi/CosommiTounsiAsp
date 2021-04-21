@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ConsommiTounsii.Controllers
 {
-    public class PublicityyController : Controller
+    public class PublicityController : Controller
     {
         // GET: Publicity
         public ActionResult Index()
@@ -61,12 +61,34 @@ namespace ConsommiTounsii.Controllers
         // Post : Publicity
         public ActionResult Create()
         {
+            IEnumerable<Product> products = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-all-products");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Product>>();
+                    readJob.Wait();
+                    products = readJob.Result;
+                }
+            }
+
+            ViewBag.productList = new SelectList(products, "id_prod", "name_prod");
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Publicity pub)
         {
+            string idprod = Request.Form["productList"].ToString();
+            Product p = new Product();
+            p.id_prod = Convert.ToInt32(idprod);
+            pub.product = p;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/add-publicity");
@@ -104,8 +126,25 @@ namespace ConsommiTounsii.Controllers
         //create an action for getting data by id  for edit form
         public ActionResult Edit(int id)
         {
-            Publicity pub = null;
+            IEnumerable<Product> products = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-all-products");
+                responseTask.Wait();
 
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Product>>();
+                    readJob.Wait();
+                    products = readJob.Result;
+                }
+            }
+
+            ViewBag.productList = new SelectList(products, "id_prod", "name_prod");
+
+            Publicity pub = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
@@ -128,6 +167,25 @@ namespace ConsommiTounsii.Controllers
         [HttpPost]
         public ActionResult Edit(Publicity pub)
         {
+            Product products = null;
+            long id = pub.product.id_prod;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-product/" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Product>();
+                    readTask.Wait();
+
+                    products = readTask.Result;
+                }
+            }
+
+            pub.product = products;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/modify-publicity");

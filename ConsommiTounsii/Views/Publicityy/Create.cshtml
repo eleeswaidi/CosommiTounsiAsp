@@ -1,4 +1,4 @@
-﻿@model ConsommiTounsii.Models.Publicity
+﻿@model Consomitounsi.WebService.Models.Publicity
 
 @{
     ViewBag.Title = "Create";
@@ -22,6 +22,18 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name_pub, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.name_pub, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.product, htmlAttributes: new
+            {
+                @class =
+                "control-label col-md-2"
+            })
+            <div class="col-md-10">
+                @Html.DropDownList("productList", (SelectList)ViewData["productList"])
+                @Html.ValidationMessageFor(model => model.product)
             </div>
         </div>
 

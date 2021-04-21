@@ -67,11 +67,11 @@ namespace ConsommiTounsii.Controllers
         // Post : Product
         public ActionResult Create()
         {
-            IEnumerable<Category> cats = null;
-            using (var clientt = new HttpClient())
+            IEnumerable<Category> categorys = null;
+            using (var client = new HttpClient())
             {
-                clientt.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
-                var responseTask = clientt.GetAsync("retrieve-all-categorys");
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-all-categorys");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -79,17 +79,21 @@ namespace ConsommiTounsii.Controllers
                 {
                     var readJob = result.Content.ReadAsAsync<IList<Category>>();
                     readJob.Wait();
-                    cats = readJob.Result;
-                    ViewBag.id_cat = new SelectList(cats, "id_cat", "name_cat");
-                    return View();
+                    categorys = readJob.Result;
                 }
-                return View();
             }
+
+            ViewBag.categoryList = new SelectList(categorys, "id_cat", "name_cat");
+            return View();
         }
 
         [HttpPost]
         public ActionResult Create(Product prod)
         {
+            string idCat = Request.Form["categoryList"].ToString();
+            Category c = new Category();
+            c.id_cat = Convert.ToInt32(idCat);
+            prod.category = c;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/add-product");
@@ -128,8 +132,25 @@ namespace ConsommiTounsii.Controllers
         //create an action for getting data by id  for edit form
         public ActionResult Edit(int id)
         {
-            Product products = null;
+            IEnumerable<Category> categorys = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-all-categorys");
+                responseTask.Wait();
 
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Category>>();
+                    readJob.Wait();
+                    categorys = readJob.Result;
+                }
+            }
+
+            ViewBag.categoryList = new SelectList(categorys, "id_cat", "name_cat");
+
+            Product products = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
@@ -152,6 +173,27 @@ namespace ConsommiTounsii.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
+
+            Category categorys = null;
+            long id = product.category.id_cat;
+            Console.WriteLine(id);
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("retrieve-category/" + id.ToString());
+                responseTask.Wait();
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Category>();
+                    readTask.Wait();
+
+                    categorys = readTask.Result;
+                }
+            }
+
+            product.category = categorys;
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/modify-product");
@@ -165,36 +207,6 @@ namespace ConsommiTounsii.Controllers
                 return View(product);
 
             }
-        }
-
-        public ActionResult OrderAsc(String searchString)
-        {
-            IEnumerable<Product> products = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
-                var responseTask = client.GetAsync("retrieve-all-products-asc");
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readJob = result.Content.ReadAsAsync<IList<Product>>();
-                    readJob.Wait();
-                    products = readJob.Result;
-                    if (!String.IsNullOrEmpty(searchString))
-                    {
-                        products = products.Where(m => m.name_prod.Contains(searchString)).ToList();
-                    }
-                    return View(products);
-                }
-                else
-                {
-                    products = Enumerable.Empty<Product>();
-                    ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
-                }
-            }
-            return View(products);
         }
 
     }
