@@ -14,7 +14,7 @@ namespace ConsommiTounsii.Models
         public float fees{get;set;}
 
         public DeliveryMan deliveryman {get; set;}
-        public orders orders { get; set; }
+        public Orders orders { get; set; }
 
     }
 }
