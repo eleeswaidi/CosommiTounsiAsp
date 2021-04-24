@@ -10,6 +10,8 @@ namespace ConsommiTounsii.Controllers
 {
     public class BasketController : Controller
     {
+        private static Client nejiba = new Client();
+       
         // GET: order
         public ActionResult Index()
         {
@@ -87,7 +89,7 @@ namespace ConsommiTounsii.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8084/ConsomiTounsi/servlet/");
-                var putTask = client.PutAsJsonAsync<Basket>("Reduction/" + basket.id_basket.ToString() , basket);
+                var putTask = client.PutAsJsonAsync<Basket>("Reduction/" + id.ToString() , basket);
                 putTask.Wait();
 
                 var ressult = putTask.Result;
@@ -98,6 +100,8 @@ namespace ConsommiTounsii.Controllers
 
             }
         }
+
+
     }
 
 
