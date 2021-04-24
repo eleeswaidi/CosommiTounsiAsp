@@ -150,6 +150,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PublicityyController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,12 +233,17 @@
     <Content Include="Views\Line\Details.cshtml" />
     <Content Include="Views\Line\Create.cshtml" />
     <Content Include="Views\Line\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Edit.cshtml" />
+    <Content Include="Views\Subject\MakeComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Views\DeliveryMan\" />
     <Folder Include="Views\Delivery\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
