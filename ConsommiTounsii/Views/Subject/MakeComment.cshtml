@@ -1,0 +1,64 @@
+﻿@model ConsommiTounsii.Models.Subject
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desc_subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rating_subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rating_subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.comments)
+        </dt>
+        @foreach (var item in ViewBag.CommList)
+        {
+            <dd>
+                <span> @item.desc_comment<br /></span>
+            </dd>
+
+        }
+
+        @using (Html.BeginForm("MakeComment", "Subject"))
+        {
+            <dd>
+                <table>
+                    <tr>
+                        <td>
+                            <div>
+                                <b>Make a comment: </b> <input type="text" id="cmnt" name="comment" />
+                                <input type="hidden" name="subId" value="@ViewBag.idSub" />
+                            </div>
+                        </td>
+                        <td>
+                            <input type="submit" value="MakeComment" class="btn-primary" />
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <br />
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
