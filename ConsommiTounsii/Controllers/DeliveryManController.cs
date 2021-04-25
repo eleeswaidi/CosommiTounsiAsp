@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ConsommiTounsii.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,6 +11,15 @@ namespace ConsommiTounsii.Controllers
 {
     public class DeliveryManController : Controller
     {
+
+        HttpClient Client;
+        public DeliveryManController()
+        {
+            Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:8083/ConsomiTounsi/servlet/");
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+        }
         // GET: DeliveryMan
         public ActionResult Index()
         {
@@ -28,13 +40,20 @@ namespace ConsommiTounsii.Controllers
 
         // POST: DeliveryMan/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(DeliveryMan deliveryman)
         {
             try
             {
-                // TODO: Add insert logic here
+                var postJob = Client.PostAsJsonAsync<DeliveryMan>("add-DeliveryMan", deliveryman);
+                postJob.Wait();
 
-                return RedirectToAction("Index");
+                var postResult = postJob.Result;
+                if (postResult.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                ViewBag.message = "problème d'ajout";
+                return View();
             }
             catch
             {
