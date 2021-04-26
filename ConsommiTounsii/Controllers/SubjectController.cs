@@ -285,44 +285,48 @@ namespace ConsommiTounsii.Controllers
         [HttpPost]
         public ActionResult MakeComment(int subId, String comment)
         {
-            Subject subject = new Subject();
-            subject.id_subject = subId;
-
-            Comment cmnt = new Comment();
-            cmnt.subject = subject;
-            cmnt.desc_comment = comment;
-
-            using (var client = new HttpClient())
+            if (!String.IsNullOrEmpty(comment))
             {
-                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/add-comment");
-                var postJob = client.PostAsJsonAsync<Comment>("add-comment", cmnt);
-                postJob.Wait();
+                Subject subject = new Subject();
+                subject.id_subject = subId;
 
-                var postResult = postJob.Result;
+                Comment cmnt = new Comment();
+                cmnt.subject = subject;
+                cmnt.desc_comment = comment;
 
-            }
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
-                var responseTask = client.GetAsync("retrieve-subject/" + subId.ToString());
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    var readTask = result.Content.ReadAsAsync<Subject>();
-                    readTask.Wait();
+                    client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/add-comment");
+                    var postJob = client.PostAsJsonAsync<Comment>("add-comment", cmnt);
+                    postJob.Wait();
 
-                    subject = readTask.Result;
+                    var postResult = postJob.Result;
+
                 }
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                    var responseTask = client.GetAsync("retrieve-subject/" + subId.ToString());
+                    responseTask.Wait();
+
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<Subject>();
+                        readTask.Wait();
+
+                        subject = readTask.Result;
+                    }
+                }
+
+                List<Comment> commentsList = subject.comments;
+                ViewBag.CommList = commentsList;
+                ViewBag.idSub = subject.id_subject;
+                return View(subject);
             }
 
-            List<Comment> commentsList = subject.comments;
-            ViewBag.CommList = commentsList;
-            ViewBag.idSub = subject.id_subject;
-            return View(subject);
-
+            return Redirect("/Subject/Details/" + subId);
         }
     }
 }
