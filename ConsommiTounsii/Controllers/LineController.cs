@@ -87,7 +87,7 @@ namespace ConsommiTounsii.Controllers
         {
             string LineManagerId = Request.Form["LineManagerList"].ToString();
             LineManager c = new LineManager();
-            c.userId = Convert.ToInt32(LineManagerId);
+            c.user_id = Convert.ToInt32(LineManagerId);
             line.lineManager = c;
             using (var client = new HttpClient())
             {
@@ -168,7 +168,7 @@ namespace ConsommiTounsii.Controllers
         public ActionResult Edit(Line line)
         {
             LineManager categorys = null;
-            long id = line.lineManager.userId;
+            long id = line.lineManager.user_id;
             Console.WriteLine(id);
 
             using (var client = new HttpClient())

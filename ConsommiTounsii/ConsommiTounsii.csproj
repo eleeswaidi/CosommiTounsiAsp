@@ -78,6 +78,7 @@
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -206,8 +207,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -215,7 +214,6 @@
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Affect.cshtml" />
     <Content Include="Views\Basket\Validatebasket.cshtml" />
-    <Content Include="Views\Basket\Reduction.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
@@ -238,11 +236,17 @@
     <Content Include="Views\Subject\Create.cshtml" />
     <Content Include="Views\Subject\Edit.cshtml" />
     <Content Include="Views\Subject\MakeComment.cshtml" />
+    <Content Include="Views\DeliveryMan\Index.cshtml" />
+    <Content Include="Views\DeliveryMan\Create.cshtml" />
+    <Content Include="Views\DeliveryMan\Details.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\DeliveryMan\Edit.cshtml" />
+    <Content Include="Views\DeliveryMan\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\DeliveryMan\" />
     <Folder Include="Views\Delivery\" />
   </ItemGroup>
   <ItemGroup>
