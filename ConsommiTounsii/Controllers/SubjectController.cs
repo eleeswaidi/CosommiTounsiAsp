@@ -299,11 +299,6 @@ namespace ConsommiTounsii.Controllers
                 postJob.Wait();
 
                 var postResult = postJob.Result;
-                /*if (postResult.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-                ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");*/
 
             }
 
