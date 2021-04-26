@@ -238,11 +238,15 @@
     <Content Include="Views\Subject\MakeComment.cshtml" />
     <Content Include="Views\DeliveryMan\Index.cshtml" />
     <Content Include="Views\DeliveryMan\Create.cshtml" />
+    <Content Include="Views\DeliveryMan\Details.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\DeliveryMan\Edit.cshtml" />
+    <Content Include="Views\DeliveryMan\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\DeliveryMan\" />
     <Folder Include="Views\Delivery\" />
   </ItemGroup>
   <ItemGroup>

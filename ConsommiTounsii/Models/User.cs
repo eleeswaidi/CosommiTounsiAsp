@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,15 @@ namespace ConsommiTounsii.Models
             public string firstname_user { get; set; }
 
         public string lastname_user { get; set; }
-
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime dateofbirth_name { get; set; }
 
         public string address_user { get; set; }
 
         public string email_user { get; set; }
-
+        
+        [DataType(DataType.Password)]
         public string password { get; set; }
 
         public User()
