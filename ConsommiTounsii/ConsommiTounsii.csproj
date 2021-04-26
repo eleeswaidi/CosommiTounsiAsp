@@ -78,6 +78,7 @@
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -146,9 +147,12 @@
     <Compile Include="Controllers\DeliveryController.cs" />
     <Compile Include="Controllers\DeliveryManController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LineController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PublicityyController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,8 +207,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -212,7 +214,6 @@
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Affect.cshtml" />
     <Content Include="Views\Basket\Validatebasket.cshtml" />
-    <Content Include="Views\Basket\Reduction.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
@@ -223,12 +224,25 @@
     <Content Include="Views\Publicityy\Details.cshtml" />
     <Content Include="Views\Publicityy\Create.cshtml" />
     <Content Include="Views\Publicityy\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\Line\Index.cshtml" />
+    <Content Include="Views\Line\Details.cshtml" />
+    <Content Include="Views\Line\Create.cshtml" />
+    <Content Include="Views\Line\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Edit.cshtml" />
+    <Content Include="Views\Subject\MakeComment.cshtml" />
     <Content Include="Views\DeliveryMan\Index.cshtml" />
     <Content Include="Views\DeliveryMan\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\DeliveryMan\" />
     <Folder Include="Views\Delivery\" />
   </ItemGroup>
   <ItemGroup>

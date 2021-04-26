@@ -62,13 +62,18 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.id_order }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.id_order })|
-                @Html.ActionLink("Affect to basket", "Affect", new { id = item.id_order })
-
+                @Html.ActionLink("Affect to basket", "Affect", new { id = item.id_order })|
+                @Html.ActionLink("Remove From Basket", "removefrombasket", new { id = item.id_order })
             </td>
         </tr>
     }
 
 </table>
 <div>
-    @Html.ActionLink("Validate", "Validatebasket")
+   
+    <a href="http://localhost:8084/ConsomiTounsi/servlet/orders/export/pdf">Download</a>
 </div>
+<div>
+    <a href="http://localhost:8084/ConsomiTounsi/servlet/send-mail-attachment">Send Bill</a>
+</div>
+
