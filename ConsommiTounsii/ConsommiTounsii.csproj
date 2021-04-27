@@ -235,9 +235,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
+    <Folder Include="Line\" />
+    <Folder Include="User\" />
     <Folder Include="Views\DeliveryMan\" />
     <Folder Include="Views\Delivery\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
