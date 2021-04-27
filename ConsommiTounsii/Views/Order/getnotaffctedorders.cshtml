@@ -1,0 +1,192 @@
+﻿@model IEnumerable<ConsommiTounsii.Models.Orders>
+
+@{
+    ViewBag.Title = "getnotaffctedorders";
+}
+<style>
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        
+        animation: spin 2s linear infinite;
+        width: 5%;
+        height: 10%;
+        top: 250px;
+        left: 600px;
+        position: fixed;
+        display: block;
+        opacity: 0.7;
+        background-color: #fff;
+        z-index: 99;
+        text-align: center;
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<h2>Orders Not Affected</h2>
+<b id="errortext" style="display: none; color: red"></b>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="loader"></div>
+<table class="table">
+    <tr>
+        <th>
+                    Rèf
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fees_order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="tbodychanged">
+        @foreach (var item in Model)
+        {
+            <tr id='@item.id_order+'>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status_order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fees_order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    <button type="button" id="@item.id_order" class="btn btn-info btn-lg affect" data-toggle="modal" data-target="#myModal">Affecter</button>
+
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+<!-- Modal -->
+<div class="modal fade bootstrap" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <b>
+                    <span style="margin-left: 128px;">Select date of delivery for order : </span>
+                    <span class="modal-title" id="modheader"></span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <label for="meeting-time">Choose a time for your order:</label>
+
+                <input type="datetime-local" id="meeting-time"
+                       name="meeting-time" value="2018-06-12T19:30"
+                       min="2021-01-07T00:00" max="2022-06-14T00:00">
+            </div>
+         
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="confirmorder" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+              $(".loader").hide();
+
+            var id = "";
+            $(".affect").on("click", function () {
+                $('#modheader').text($(this).attr("id"));
+                id= $(this).attr("id");
+            });
+            $("#confirmorder").on("click", function () {
+
+                $(".loader").show();
+            $.ajax({  
+                type: "POST",  
+                url: '@Url.Action("affectorder")',  
+                data: { idorder: $("#modheader").text(), dateorder: $("#meeting-time").val() },
+                
+                success: function (Data) {
+                    if (!Data.includes("OK")) {
+                        $("#errortext").css("display", "block");
+                        $("#errortext").text(Data);
+                         $(".loader").hide();
+                    } else {
+                        $("#errortext").css("display", "none");
+
+                        //refresh table
+                        $.ajax({  
+                type: "POST",  
+                url: '@Url.Action("refreshorders")',  
+                
+                            success: function (Data) {
+                                // $("#tbodychanged").append("<tr> <th>"+Data[i].status_order+ "</th> <th>"+new Date(parseInt(Data[i].date_order.substr(6))).toISOString().split('T')[0]+" </th> <th> "+Data[0].fees_order+" </th> <th>"++" </th> </tr>")
+                                alert("Delivery is affected successifely");
+                                document.getElementById(id + '+').style.display = "none";
+                                 $(".loader").hide();
+                },  
+                error: function () {  
+                    alert("Error while charging data");  
+                     $(".loader").hide();
+                }  
+            });  
+
+
+
+
+                    }
+                },  
+                error: function () {  
+                    alert("Error while inserting data");  
+                     $(".loader").hide();
+                }  
+            });  
+
+               // $(".loader").hide();
+        });  
+
+
+
+
+
+
+            });
+
+       
+    </script>
+
+}

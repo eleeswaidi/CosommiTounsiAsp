@@ -23,7 +23,7 @@ namespace ConsommiTounsii.Controllers
         // GET: DeliveryMan
         public ActionResult Index()
         {
-            var responseTask = Client.GetAsync("cc");
+            var responseTask = Client.GetAsync("getall-DeliveryMan");
             responseTask.Wait();
 
             var result = responseTask.Result;
