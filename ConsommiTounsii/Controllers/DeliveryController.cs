@@ -15,7 +15,7 @@ namespace ConsommiTounsii.Controllers
         public DeliveryController()
         {
              Client = new HttpClient();
-            Client.BaseAddress = new Uri("http://localhost:8083/ConsomiTounsi/servlet");
+            Client.BaseAddress = new Uri("http://localhost:8083/ConsomiTounsi/servlet/");
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             
         }
@@ -100,6 +100,31 @@ namespace ConsommiTounsii.Controllers
             {
                 return View();
             }
+        }
+
+
+        public ActionResult FollowDelivery(long id)
+        {
+            var responseTask = Client.GetAsync("FollowingOrder/" + id);
+            responseTask.Wait();
+
+            var result = responseTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var readJob = result.Content.ReadAsStringAsync();
+                readJob.Wait();
+
+                ViewBag.resultat = readJob.Result;
+                return View(new Delivery());
+
+            }
+            else
+            {
+
+                ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
+            }
+            return View(new Delivery());
+            
         }
     }
 }

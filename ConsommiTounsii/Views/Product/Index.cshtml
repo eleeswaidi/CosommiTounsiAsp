@@ -1,9 +1,13 @@
-﻿@model ConsommiTounsii.Models.Product
+﻿@model IEnumerable<Consomitounsi.WebService.Models.Product>
 
 @{
     ViewBag.Title = "Retrieve all products";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
-
+<br />
+<br />
+<br />
+<br />
 <h2>Retrieve all products</h2>
 
 
@@ -24,6 +28,12 @@
 }
 <p>
     @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Order Asc", "OrderByAsc")
+</p>
+<p>
+    @Html.ActionLink("Order Desc", "OrderByDesc")
 </p>
 <table class="table">
     <tr>
@@ -93,4 +103,4 @@
     }
 
 </table>
-
+<a href="http://localhost:8086/ConsomiTounsi/servlet/download">Download </a>

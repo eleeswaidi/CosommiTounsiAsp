@@ -1,0 +1,85 @@
+﻿@model ConsommiTounsii.Models.DeliveryMan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DeliveryMan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstname_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstname_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastname_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastname_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateofbirth_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateofbirth_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_user)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_time)
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {id=Model.user_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

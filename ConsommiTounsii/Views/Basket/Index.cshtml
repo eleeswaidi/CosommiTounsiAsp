@@ -20,27 +20,29 @@
         <th>
             @Html.DisplayNameFor(model => model.total)
         </th>
-        <th></th>
+      
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_basket)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_basket)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total)
-        </td>
-        <td>
-            @Html.ActionLink("validate", "Validatebasket", new { id = item.id_basket }) |
-            @Html.ActionLink("Reduce", "Reduction", new { id = item.id_basket }) 
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_basket)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.date_basket)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.total)
+    </td>
+   
+    <td>
+        @Html.ActionLink("validate", "Validatebasket", new { id = item.id_basket }) |
+        @Html.ActionLink("Reduce", "Reduction", new { id = item.id_basket })
 
 
-        </td>
-    </tr>
+
+    </td>
+</tr>
 }
 
 </table>

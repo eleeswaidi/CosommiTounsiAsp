@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Consomitounsi.WebService.Models.Product>
+
+@{
+    ViewBag.Title = "OrderByAsc";
+}Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<h2>Retrieve all products</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                <div>
+                    Search by name: @Html.TextBox("searchString")
+                </div>
+            </td>
+            <td>
+                <input type="submit" value="Search" id="submit" />
+            </td>
+        </tr>
+    </table>
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Order Asc", "OrderByAsc")
+</p>
+<p>
+    @Html.ActionLink("Order Desc", "OrderByDesc")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.name_prod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description_prod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price_prod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.barcode_prod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.weight_prod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.minvalue_stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.name_prod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description_prod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price_prod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.barcode_prod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.weight_prod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.minvalue_stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category.name_cat)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_prod }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_prod })|
+                @Html.ActionLink("Details", "Details", new { id = item.id_prod })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<a href="http://localhost:8086/ConsomiTounsi/servlet/download">Download </a>
