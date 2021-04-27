@@ -243,6 +243,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DeliveryMan\Edit.cshtml" />
     <Content Include="Views\DeliveryMan\Delete.cshtml" />
+    <Content Include="Views\Product\OrderByAsc.cshtml" />
+    <Content Include="Views\Product\OrderByDesc.cshtml" />
     <Content Include="Views\Order\getnotaffctedorders.cshtml" />
     <Content Include="Views\Delivery\FollowDelivery.cshtml" />
     <Content Include="Views\Order\getMyOrders.cshtml" />
