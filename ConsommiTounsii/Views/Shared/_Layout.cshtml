@@ -1,41 +1,439 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CONSOMI TOUNSI</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../Content/images/logoConsomi.png" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../Content/css/bootstrap.min.css">
+    <!-- Typography CSS -->
+    <link rel="stylesheet" href="../Content/css/typography.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../Content/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../Content/css/responsive.css">
+
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+<body style="background-color:white;">
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <hr />
+    </div>
+
+
+    <!-- loader Start -->
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <div class="iq-sidebar" style="background-color:white;">
+            <div id="sidebar-scrollbar">
+                <nav class="iq-sidebar-menu">
+                    <ul id="iq-sidebar-toggle" class="iq-menu">
+                        <li>
+                            <a href="https://localhost:44343/Product/Index" class="iq-waves-effect"><i class="la la-barcode"></i><span>Products</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="las la-user"></i><span>Users</span></a>
+                        </li>
+                        <li>
+                            <a href="https://localhost:44343/Publicity/Index" class="iq-waves-effect"><i class="las la-newspaper"></i><span>Publicity</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="la la-list"></i><span>Orders</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="las la-film"></i><span>Events</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="la la-truck"></i><span>Delivery</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="las la-file"></i><span>Line</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="la la-exclamation"></i><span>Claims</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="la la-forumbee"></i><span>Forum</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="iq-waves-effect"><i class="lab la-rocketchat"></i><span>Chat</span></a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <div class="p-3"></div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </div>
+        <!-- TOP Nav Bar -->
+        <div class="iq-top-navbar" style="background-color:white;">
+            <div class="iq-navbar-custom">
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <div class="iq-navbar-logo d-flex justify-content-between">
+                        <a href="index.html">
+                            <img src="../Content/images/logoConsomi.png" class="img-fluid" alt="">
+                            <span>CONSOMI TOUNSI</span>
+                        </a>
+                        <div class="iq-menu-bt align-self-center">
+                            <div class="wrapper-menu">
+                                <div class="main-circle"><i class="ri-menu-line"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+                        <i class="ri-menu-3-line"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto navbar-list">
+                            <li>
+                                <a href="index.html" class="iq-waves-effect d-flex align-items-center">
+                                    <i class="ri-home-line"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="search-toggle iq-waves-effect" href="#"><i class="ri-group-line"></i></a>
+                                <div class="iq-sub-dropdown iq-sub-dropdown-large">
+                                    <div class="iq-card shadow-none m-0">
+                                        <div class="iq-card-body p-0 ">
+                                            <div class="bg-primary p-3">
+                                                <h5 class="mb-0 text-white">Friend Request<small class="badge  badge-light float-right pt-1">4</small></h5>
+                                            </div>
+                                            <div class="iq-friend-request">
+                                                <div class="iq-sub-card iq-sub-card-big d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="../Content/images/user/01.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ml-3">
+                                                            <h6 class="mb-0 ">Jaques Amole</h6>
+                                                            <p class="mb-0">40  friends</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="javascript:void();" class="mr-3 btn btn-primary rounded">Confirm</a>
+                                                        <a href="javascript:void();" class="mr-3 btn btn-secondary rounded">Delete Request</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="iq-friend-request">
+                                                <div class="iq-sub-card iq-sub-card-big d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="../Content/images/user/02.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ml-3">
+                                                            <h6 class="mb-0 ">Lucy Tania</h6>
+                                                            <p class="mb-0">12  friends</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="javascript:void();" class="mr-3 btn btn-primary rounded">Confirm</a>
+                                                        <a href="javascript:void();" class="mr-3 btn btn-secondary rounded">Delete Request</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="iq-friend-request">
+                                                <div class="iq-sub-card iq-sub-card-big d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="../Content/images/user/03.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ml-3">
+                                                            <h6 class="mb-0 ">Manny Petty</h6>
+                                                            <p class="mb-0">3  friends</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="javascript:void();" class="mr-3 btn btn-primary rounded">Confirm</a>
+                                                        <a href="javascript:void();" class="mr-3 btn btn-secondary rounded">Delete Request</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="iq-friend-request">
+                                                <div class="iq-sub-card iq-sub-card-big d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="../Content/images/user/04.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ml-3">
+                                                            <h6 class="mb-0 ">Marsha Mello</h6>
+                                                            <p class="mb-0">15  friends</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="javascript:void();" class="mr-3 btn btn-primary rounded">Confirm</a>
+                                                        <a href="javascript:void();" class="mr-3 btn btn-secondary rounded">Delete Request</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <a href="#" class="mr-3 btn text-primary">View More Request</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="search-toggle iq-waves-effect">
+                                    <div id="lottie-beil"></div>
+                                    <span class="bg-danger dots"></span>
+                                </a>
+                                <div class="iq-sub-dropdown">
+                                    <div class="iq-card shadow-none m-0">
+                                        <div class="iq-card-body p-0 ">
+                                            <div class="bg-primary p-3">
+                                                <h5 class="mb-0 text-white">All Notifications<small class="badge  badge-light float-right pt-1">4</small></h5>
+                                            </div>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="../Content/images/user/01.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Emma Watson Bni</h6>
+                                                        <small class="float-right font-size-12">Just Now</small>
+                                                        <p class="mb-0">95 MB</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="../Content/images/user/02.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">New customer is join</h6>
+                                                        <small class="float-right font-size-12">5 days ago</small>
+                                                        <p class="mb-0">Cyst Bni</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="../Content/images/user/03.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Two customer is left</h6>
+                                                        <small class="float-right font-size-12">2 days ago</small>
+                                                        <p class="mb-0">Cyst Bni</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="../Content/images/user/04.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">New Mail from Fenny</h6>
+                                                        <small class="float-right font-size-12">3 days ago</small>
+                                                        <p class="mb-0">Cyst Bni</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="search-toggle iq-waves-effect">
+                                    <div id="lottie-mail"></div>
+                                    <span class="bg-primary count-mail"></span>
+                                </a>
+                                <div class="iq-sub-dropdown">
+                                    <div class="iq-card shadow-none m-0">
+                                        <div class="iq-card-body p-0 ">
+                                            <div class="bg-primary p-3">
+                                                <h5 class="mb-0 text-white">All Messages<small class="badge  badge-light float-right pt-1">5</small></h5>
+                                            </div>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="../Content/images/user/01.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Bni Emma Watson</h6>
+                                                        <small class="float-left font-size-12">13 Jun</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="images/user/02.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Lorem Ipsum Watson</h6>
+                                                        <small class="float-left font-size-12">20 Apr</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="images/user/03.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Why do we use it?</h6>
+                                                        <small class="float-left font-size-12">30 Jun</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="images/user/04.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Variations Passages</h6>
+                                                        <small class="float-left font-size-12">12 Sep</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="#" class="iq-sub-card">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img class="avatar-40 rounded" src="images/user/05.jpg" alt="">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Lorem Ipsum generators</h6>
+                                                        <small class="float-left font-size-12">5 Dec</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-list">
+                            <li>
+                                <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+                                    <i class="ri-arrow-down-s-fill"></i>
+                                </a>
+                                <div class="iq-sub-dropdown iq-user-dropdown">
+                                    <div class="iq-card shadow-none m-0">
+                                        <div class="iq-card-body p-0 ">
+                                            <div class="bg-primary p-3 line-height">
+                                                <h5 class="mb-0 text-white line-height">Hello Bni Cyst</h5>
+                                                <span class="text-white font-size-12">Available</span>
+                                            </div>
+                                            <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                                                <div class="media align-items-center">
+                                                    <div class="rounded iq-card-icon iq-bg-primary">
+                                                        <i class="ri-file-user-line"></i>
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">My Profile</h6>
+                                                        <p class="mb-0 font-size-12">View personal profile details.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="profile-edit.html" class="iq-sub-card iq-bg-warning-hover">
+                                                <div class="media align-items-center">
+                                                    <div class="rounded iq-card-icon iq-bg-warning">
+                                                        <i class="ri-profile-line"></i>
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Edit Profile</h6>
+                                                        <p class="mb-0 font-size-12">Modify your personal details.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="account-setting.html" class="iq-sub-card iq-bg-info-hover">
+                                                <div class="media align-items-center">
+                                                    <div class="rounded iq-card-icon iq-bg-info">
+                                                        <i class="ri-account-box-line"></i>
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Account settings</h6>
+                                                        <p class="mb-0 font-size-12">Manage your account parameters.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="privacy-setting.html" class="iq-sub-card iq-bg-danger-hover">
+                                                <div class="media align-items-center">
+                                                    <div class="rounded iq-card-icon iq-bg-danger">
+                                                        <i class="ri-lock-line"></i>
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Privacy Settings</h6>
+                                                        <p class="mb-0 font-size-12">Control your privacy parameters.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="d-inline-block w-100 text-center p-3">
+                                                <a class="bg-primary iq-sign-btn" href="sign-in.html" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- TOP Nav Bar END -->
+        <!-- Right Sidebar Panel Start-->
+        <!-- Right Sidebar Panel End-->
+        <!-- Page Content  -->
+        <div id="content-page" class="content-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
-        </footer>
-    </div>
-
+    <!-- Wrapper END -->
+    <!-- Footer -->
+    <!-- Footer END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../Content/js/jquery.min.js"></script>
+    <script src="../Content/js/popper.min.js"></script>
+    <script src="../Content/js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="../Content/js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="../Content/js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="../Content/js/waypoints.min.js"></script>
+    <script src="../Content/js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="../Content/js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="../Content/js/apexcharts.js"></script>
+    <!-- Slick JavaScript -->
+    <script src="../Content/js/slick.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="../Content/js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="../Content/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="../Content/js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth Scrollbar JavaScript -->
+    <script src="../Content/js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="../Content/js/lottie.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="../Content/js/chart-custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../Content/js/custom.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

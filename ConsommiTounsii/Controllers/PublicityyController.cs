@@ -1,4 +1,4 @@
-﻿using ConsommiTounsii.Models;
+﻿using Consomitounsi.WebService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ConsommiTounsii.Controllers
+namespace Consomitounsi.WebService.Controllers
 {
     public class PublicityController : Controller
     {
@@ -98,7 +98,7 @@ namespace ConsommiTounsii.Controllers
                 var postResult = postJob.Result;
                 if (postResult.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return Redirect("/Publicity/Index");
                 }
                 ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
                 return View(pub);
@@ -117,9 +117,9 @@ namespace ConsommiTounsii.Controllers
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return Redirect("/Publicity/Index");
                 }
-                return RedirectToAction("Index");
+                return Redirect("/Publicity/Index");
             }
         }
 
@@ -195,7 +195,7 @@ namespace ConsommiTounsii.Controllers
                 var ressult = putTask.Result;
                 if (ressult.IsSuccessStatusCode)
 
-                    return RedirectToAction("Index");
+                    return Redirect("/Publicity/Index");
                 return View(pub);
 
             }
