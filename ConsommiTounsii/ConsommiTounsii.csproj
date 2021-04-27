@@ -857,11 +857,13 @@
     <Content Include="Views\DeliveryMan\Delete.cshtml" />
     <Content Include="Views\Product\OrderByAsc.cshtml" />
     <Content Include="Views\Product\OrderByDesc.cshtml" />
+    <Content Include="Views\Order\getnotaffctedorders.cshtml" />
+    <Content Include="Views\Delivery\FollowDelivery.cshtml" />
+    <Content Include="Views\Order\getMyOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\Delivery\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -320,6 +320,121 @@ namespace ConsommiTounsii.Controllers
             }
         }
 
+        #region elee_delivery
 
+        public ActionResult getMyOrders()
+        {
+            int id= 4;
+            IEnumerable<Orders> orders = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8083/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("getMyOrders/"+id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Orders>>();
+                    readJob.Wait();
+                    orders = (IEnumerable<Orders>)readJob.Result;
+
+                }
+                else
+                {
+                    orders = Enumerable.Empty<Orders>();
+                    ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
+                }
+            }
+
+            return View(orders);
+
+        }
+
+        public ActionResult getnotaffctedorders()
+        {
+            IEnumerable<Orders> orders = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8083/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("getNotAffectedOrders");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Orders>>();
+                    readJob.Wait();
+                    orders = (IEnumerable<Orders>)readJob.Result;
+
+                }
+                else
+                {
+                    orders = Enumerable.Empty<Orders>();
+                    ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
+                }
+            }
+
+            return View(orders);
+
+        }
+
+        public JsonResult affectorder(string idorder,string dateorder)
+        {
+            string retour = "";
+            using (var client = new HttpClient())
+            {
+                var dt= DateTime.Parse(dateorder);
+                client.BaseAddress = new Uri("http://localhost:8083/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("affecteddelivery/"+long.Parse(idorder)+"/"+dateorder);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsStringAsync();
+                    retour = readJob.Result;
+                    readJob.Wait();
+
+
+                }
+                else
+                {
+                    retour= "Server error occured. Please contact admin for help!";
+                }
+            }
+
+
+            return Json(retour, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult refreshorders()
+        {
+            IEnumerable<Orders> orders = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8083/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("getNotAffectedOrders");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Orders>>();
+                    readJob.Wait();
+                    orders = (IEnumerable<Orders>)readJob.Result;
+
+                }
+                else
+                {
+                    orders = Enumerable.Empty<Orders>();
+                     }
+            }
+
+            return Json(orders, JsonRequestBehavior.AllowGet);
+
+        }
+
+        #endregion
     }
 }
