@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using ConsommiTounsii.Models;
 
-namespace ConsommiTounsii.Controllers
+namespace ConsomiTounsiSaid.Controllers
 {
     public class SubjectController : Controller
     {
@@ -136,7 +138,8 @@ namespace ConsommiTounsii.Controllers
                 var postResult = postJob.Result;
                 if (postResult.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
+                    return Redirect("/Subject/MySubject");
                 }
                 ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
                 return View(subject);
@@ -215,7 +218,8 @@ namespace ConsommiTounsii.Controllers
 
                 var ressult = putTask.Result;
                 if (ressult.IsSuccessStatusCode)
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
+                    return Redirect("/Subject/MySubject");
 
                 return View(subject);
 
@@ -228,16 +232,29 @@ namespace ConsommiTounsii.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var putTask = client.PutAsJsonAsync<int>("modify-client-subject/" + id.ToString(), id);
+                putTask.Wait();
+
+                var ressult1 = putTask.Result;
+
+            }
+            Console.WriteLine(id);
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
                 var deleteTask = client.DeleteAsync("remove-subject/" + id.ToString());
 
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
+                    return Redirect("/Subject/MySubject");
                 }
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return Redirect("/Subject/MySubject");
             }
         }
+
 
         // POST: Subject/Delete/5
         [HttpPost]
@@ -259,7 +276,6 @@ namespace ConsommiTounsii.Controllers
         {
 
             Subject subject = null;
-            Console.WriteLine("aaaa");
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
@@ -327,6 +343,86 @@ namespace ConsommiTounsii.Controllers
             }
 
             return Redirect("/Subject/Details/" + subId);
+
+
         }
+
+
+        public ActionResult MySubject()
+        {
+            int idUser = 1;
+
+            IEnumerable<Subject> subjects = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var responseTask = client.GetAsync("subject-by-client/" + idUser.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Subject>>();
+                    readJob.Wait();
+                    subjects = readJob.Result;
+                    return View(subjects);
+                }
+                else
+                {
+                    subjects = Enumerable.Empty<Subject>();
+                    ModelState.AddModelError(string.Empty, "Server error occured. Please contact admin for help!");
+                }
+            }
+            return View(subjects);
+        }
+
+        [HttpPost]
+        public ActionResult MySubject(string subject)
+        {
+            int idUser = 1;
+
+            IEnumerable<Subject> subjects = null;
+            if (!String.IsNullOrEmpty(subject))
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                    var responseTask = client.GetAsync("search-subject-by-similarity-client/" + subject);
+                    responseTask.Wait();
+
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readJob = result.Content.ReadAsAsync<IList<Subject>>();
+                        readJob.Wait();
+                        subjects = readJob.Result;
+                        return View(subjects);
+                    }
+                }
+            }
+            else
+            {
+                MySubject();
+            }
+
+            return View(subjects);
+        }
+
+
+        [HttpPost]
+        public ActionResult MakeLike(int subId, int cmntId)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8086/ConsomiTounsi/servlet/");
+                var putTask = client.PutAsJsonAsync<int>("add-likes-comment/" + cmntId.ToString(), cmntId);
+                putTask.Wait();
+                var ressult1 = putTask.Result;
+
+            }
+            return Redirect("/Subject/Details/" + subId);
+        }
+
+
     }
 }

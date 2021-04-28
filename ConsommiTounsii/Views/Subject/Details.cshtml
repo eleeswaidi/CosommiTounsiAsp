@@ -6,59 +6,104 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Subject</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        
+<br />
+<br />
+<br />
+<div class="h-100 row align-items-center">
+    <div class="col-sm-12">
+        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+            <div class="iq-card-header pt-3">
+                <h4 class="card-title">@Html.DisplayFor(model => model.desc_subject)</h4>
+            </div>
+            <div class="iq-card-body">
+                <p class="card-text">Author: @Html.DisplayFor(model => model.client.email_user)</p>
+                <p class="card-text">
+                    Rating:
+                    @if (Model.rating_subject == 5)
+                    {
+                        string path = "~/Content/Rating/5.png";
+                        <img src="@Url.Content(path)" width="100" height="15" />
+                    }
+                    @if (Model.rating_subject == 4)
+                    {
+                        string path = "~/Content/Rating/4.png";
+                        <img src="@Url.Content(path)" width="90" height="15" />
+                    }
+                    @if (Model.rating_subject == 3)
+                    {
+                        string path = "~/Content/Rating/3.png";
+                        <img src="@Url.Content(path)" width="65" height="15" />
+                    }
+                    @if (Model.rating_subject == 2)
+                    {
+                        string path = "~/Content/Rating/2.png";
+                        <img src="@Url.Content(path)" width="30" height="15" />
+                    }
+                    @if (Model.rating_subject == 1)
+                    {
+                        string path = "~/Content/Rating/1.png";
+                        <img src="@Url.Content(path)" width="20" height="15" />
+                    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.desc_subject)
-        </dt>
+                </p>
+                <div class="comment-area mt-3">
+                    <hr>
+                    <h4 class="mb-2">Comment Section:</h4>
+                    <ul class="post-comments p-0 m-0">
+                        @foreach (var item in ViewBag.CommList)
+                        {
+                            <li class="mb-2">
+                                <div class="d-flex flex-wrap">
+                                    <div class="comment-data-block ml-3">
+                                        <p class="mb-0"> @item.desc_comment</p>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p class="mb-0">Likes: @item.rating_comment</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.desc_subject)
-        </dd>
+                                                </td>
+                                                @using (Html.BeginForm("MakeLike", "Subject"))
+                                                {
+                                                    <td>
+                                                        <input type="hidden" name="cmntId" value="@item.id_comment" />
+                                                        <input type="hidden" name="subId" value="@ViewBag.idSub" />
+                                                        <button class="btn btn-primary la la-thumbs-up" type="submit" style="margin-left: 800px;"></button>
+                                                    </td>
+                                                }
+                                            </tr>
+                                        </table>
+                                        <hr class="display-1" style="width: 905px;" />
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.rating_subject)
-        </dt>
+                    @using (Html.BeginForm("MakeComment", "Subject"))
+                    {
+                        <form class="comment-text d-flex align-items-center">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <input type="text" id="cmnt" name="comment" class="form-control rounded" style="width: 850px;" />
+                                            <input type="hidden" name="subId" value="@ViewBag.idSub" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary ml-2" type="submit" style="height: 42px; width: 65px;"><i class="la la-send"></i></button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    }
 
-        <dd>
-            @Html.DisplayFor(model => model.rating_subject)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.comments)
-        </dt>
-        @foreach (var item in ViewBag.CommList)
-        {
-            <dd>
-                <span> @item.desc_comment<br /></span>
-            </dd>
 
-        }
-        @using(Html.BeginForm("MakeComment", "Subject"))
-        {
-            <dd>
-                <table>
-                    <tr>
-                        <td>
-                            <div>
-                                <b>Make a comment: </b> <input type="text" id="cmnt" name="comment" />
-                                <input type="hidden" name="subId" value="@ViewBag.idSub" />
-                            </div>
-                        </td>
-                        <td>
-                            <input type="submit" value="MakeComment" class="btn-primary"/>
-                        </td>
-                    </tr>
-                </table>
-            </dd>
-            <br />
-        }
-        
-    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="/Subject/Index">Back To List</a>
 </p>
